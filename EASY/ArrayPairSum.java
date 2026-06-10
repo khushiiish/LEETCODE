@@ -1,7 +1,7 @@
-
 import java.util.Arrays;
 
-class Solution {
+public class ArrayPairSum {
+
     public int arrayPairSum(int[] nums) {
         Arrays.sort(nums);
 
@@ -15,7 +15,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution obj = new Solution();
+        ArrayPairSum obj = new ArrayPairSum();
 
         int[] nums = {1, 4, 3, 2};
 

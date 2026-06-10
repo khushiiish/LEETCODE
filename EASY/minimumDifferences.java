@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class minimumDifference {
+public class minimumDifferences {
 
     public int minimumDifference(int[] nums, int k) {
 
@@ -22,7 +22,7 @@ public class minimumDifference {
 
     public static void main(String[] args) {
 
-        minimumDifference obj = new minimumDifference();
+        minimumDifferences obj = new minimumDifferences();
 
         int[] nums = {9, 4, 1, 7};
         int k = 2;
