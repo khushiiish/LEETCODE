@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class ReversePairs {
+public class ReversePair {
 
     public int reversePairs(int[] nums) {
         return mergeSort(nums, 0, nums.length - 1);
@@ -38,7 +36,6 @@ public class ReversePairs {
 
     private void merge(int[] nums, int low, int mid, int high) {
         int[] temp = new int[high - low + 1];
-
         int left = low;
         int right = mid + 1;
         int k = 0;
@@ -65,7 +62,7 @@ public class ReversePairs {
     }
 
     public static void main(String[] args) {
-        ReversePairs obj = new ReversePairs();
+        ReversePair obj = new ReversePair();
 
         int[] nums = {1, 3, 2, 3, 1};
 
