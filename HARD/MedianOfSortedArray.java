@@ -1,48 +1,41 @@
-import java.util.*;
-
 public class MedianOfSortedArray {
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
-        // Ensure nums1 is the smaller array
-        if (nums1.length > nums2.length) {
-            return findMedianSortedArrays(nums2, nums1);
-        }
-
         int m = nums1.length;
         int n = nums2.length;
 
-        int low = 0;
-        int high = m;
+        int[] merged = new int[m + n];
 
-        while (low <= high) {
+        int i = 0, j = 0, k = 0;
 
-            int partitionX = (low + high) / 2;
-            int partitionY = (m + n + 1) / 2 - partitionX;
-
-            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
-            int minRightX = (partitionX == m) ? Integer.MAX_VALUE : nums1[partitionX];
-
-            int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
-            int minRightY = (partitionY == n) ? Integer.MAX_VALUE : nums2[partitionY];
-
-            if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
-
-                if ((m + n) % 2 == 0) {
-                    return (Math.max(maxLeftX, maxLeftY) +
-                            Math.min(minRightX, minRightY)) / 2.0;
-                } else {
-                    return Math.max(maxLeftX, maxLeftY);
-                }
-
-            } else if (maxLeftX > minRightY) {
-                high = partitionX - 1;
+        // Merge both arrays
+        while (i < m && j < n) {
+            if (nums1[i] <= nums2[j]) {
+                merged[k++] = nums1[i++];
             } else {
-                low = partitionX + 1;
+                merged[k++] = nums2[j++];
             }
         }
 
-        return 0.0;
+        // Copy remaining elements of nums1
+        while (i < m) {
+            merged[k++] = nums1[i++];
+        }
+
+        // Copy remaining elements of nums2
+        while (j < n) {
+            merged[k++] = nums2[j++];
+        }
+
+        int total = m + n;
+
+        // Find median
+        if (total % 2 == 0) {
+            return (merged[total / 2 - 1] + merged[total / 2]) / 2.0;
+        } else {
+            return merged[total / 2];
+        }
     }
 
     public static void main(String[] args) {
